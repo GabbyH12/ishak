@@ -41,12 +41,13 @@ geografy = 'География'
 # Создаём главную клавиатуру.
 def create_keyboard(response):
     keyboard = VkKeyboard(one_time=True)
+    
     if response == 'привет' or 'новая возможность':
 
         # Создание кнопок
-        keyboard.add_button('Домашнее задание', color=VkKeyboardColor.NEGATIVE)
+        #keyboard.add_button('Домашнее задание', color=VkKeyboardColor.NEGATIVE)
         
-        keyboard.add_line()
+        #keyboard.add_line()
         keyboard.add_button('Будет ли завтра дождь?', color=VkKeyboardColor.PRIMARY)
 
         #keyboard.add_line()
@@ -60,15 +61,19 @@ def create_keyboard(response):
 
         keyboard.add_line()
         keyboard.add_button('Погода', color=VkKeyboardColor.DEFAULT)
-        keyboard.add_button('ФИО учителей', color=VkKeyboardColor.DEFAULT)
+        #keyboard.add_button('ФИО учителей', color=VkKeyboardColor.DEFAULT)
         #keyboard.add_button('ГДЗ', color=VkKeyboardColor.NEGATIVE)
         
         #keyboard.add_line()
-        #keyboard.add_button('Правила по русскому языку', color = DEFAULT)
+        #keyboard.add_button('Правила по русскому языку', color=VkKeyboardColor.DEFAULT)
+
+    keyboard = keyboard.get_keyboard()
+    return keyboard
 
 # Создаём клавиатуру для запроса "Какой урок будет первым в...?" из главной клавиатуры
 def create_keyboard_for_which_yrok(response):
-    keyboard = VkKeyboard(one_time=True)
+    keyboard = VkKeyboard(one_time=False)
+    
     if response == 'какой урок будет первым в...?':
 
         # Создание кнопок
@@ -97,7 +102,7 @@ def create_keyboard_for_which_yrok(response):
     return keyboard
 
 def create_keyboard_for_name_teachers(response):
-    keyboard = VkKeyboard(one_time=True)
+    keyboard = VkKeyboard(one_time=False)
     if response == 'фио учителей':
 
         keyboard.add_button('Русский язык', color=VkKeyboardColor.POSITIVE)
@@ -121,26 +126,18 @@ def create_keyboard_for_name_teachers(response):
 
         keyboard.add_line()
         keyboard.add_button('Кубановедение', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Химия', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Физ-ра', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
         keyboard.add_button('Обществознание', color=VkKeyboardColor.POSITIVE)
 
         keyboard.add_line()
-        keyboard.add_button('История', color=VkKeyboardColor.POSITIVE)
+        keyboard.add_button('Химия', color=VkKeyboardColor.POSITIVE)
+        keyboard.add_button('Физ-ра', color=VkKeyboardColor.POSITIVE)
 
         keyboard.add_line()
+        keyboard.add_button('История', color=VkKeyboardColor.POSITIVE)
         keyboard.add_button('Информатика', color=VkKeyboardColor.POSITIVE)
 
         keyboard.add_line()
         keyboard.add_button('Английский язык', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
         keyboard.add_button('Технология', color=VkKeyboardColor.POSITIVE)
 
         keyboard.add_line()
@@ -162,6 +159,7 @@ for event in longpoll.listen():
         response = event.text.lower()
         keyboard = create_keyboard(response)
         second_keyboard = create_keyboard_for_which_yrok(response)
+        third_keyboard = create_keyboard_for_name_teachers(response)
         if event.from_user and not event.from_me:
             
             # Возможности бота
@@ -174,10 +172,10 @@ for event in longpoll.listen():
             elif response == "новая возможность":
                 send_message(vk_session, 'user_id', event.user_id, message='Удачи C:',keyboard=keyboard)
             
-            elif response == 'домашнее задание':
-                homework = """{} - ничего\n{} - номер 215 и 216\n{} - группа Е.В: страница 34, номер 6; группа С.Г: номер 9\n{} - параграф 4\n{} - параграфы 20 и 22
-                {} - ТПО страница 84, работа над ошибками\n\n{}""".format(techno, algebra, english, history, physic, russian, final_in_dz)
-                send_message(vk_session, 'user_id', event.user_id, message=homework,keyboard=keyboard)
+            #elif response == 'домашнее задание':
+                #homework = """{} - ничего\n{} - номер 215 и 216\n{} - группа Е.В: страница 34, номер 6; группа С.Г: номер 9\n{} - параграф 4\n{} - параграфы 20 и 22
+                #{} - ТПО страница 84, работа над ошибками\n\n{}""".format(techno, algebra, english, history, physic, russian, final_in_dz)
+                #send_message(vk_session, 'user_id', event.user_id, message=homework,keyboard=keyboard)
             
             elif response == 'погода':
                 observation = owm.weather_at_place("Sochi")
@@ -190,15 +188,15 @@ for event in longpoll.listen():
                     send_message(vk_session, 'user_id', event.user_id, message="В Сочи сейчас " + str(temperature) + ' градусов, ' + detailed_status + ".")
             
             elif response == 'будет ли завтра дождь?':
-                time_user = '2019-11-21 09:00:00+00'
+                time_user = '2019-11-28 09:00:00+00'
                 fc =  owm.three_hours_forecast('Sochi')
                 f = fc.will_be_rainy_at(time_user)
                 if f == False:
-                    time_user = '2019-11-21 12:00:00+00'
+                    time_user = '2019-11-28 12:00:00+00'
                     fc =  owm.three_hours_forecast('Sochi')
                     f = fc.will_be_rainy_at(time_user)
                     if f == False:
-                        time_user = '2019-11-21 18:00:00+00'
+                        time_user = '2019-11-28 18:00:00+00'
                         fc =  owm.three_hours_forecast('Sochi')
                         f = fc.will_be_rainy_at(time_user)
                         if f == False:
@@ -210,7 +208,7 @@ for event in longpoll.listen():
                 else:
                     send_message(vk_session, 'user_id', event.user_id, message="По прогнозу дождь будет(в 9:00).")
             
-            elif response == 'квакой следующий урок?':
+            elif response == 'какой следующий урок?':
                 # Понедельник
                 if time.strftime("%w", time.localtime()) == '1':
                     if time.strftime("%H", time.localtime()) == '08' and time.strftime("%M", time.localtime()) <= '50':
@@ -316,5 +314,37 @@ for event in longpoll.listen():
                 send_message(vk_session, 'user_id', event.user_id, message="В пятницу первым уроком будет английский язык.")
             elif response == 'назад':
                 send_message(vk_session, 'user_id', event.user_id, message="Возвращаю тебя в главное меню.",keyboard=keyboard)
+
+            elif response == 'фио учителей':
+                send_message(vk_session, 'user_id', event.user_id, message="Выбрав кнопку с названием урока, ты получишь в ответ от меня ФИО преподавателя, ведущего этот урок.",keyboard=third_keyboard)
+            elif response == "русский язык" or "лит-ра":
+                send_message(vk_session, 'user_id', event.user_id, message="Пономарева Анна Олеговна")
+            elif response == "алгебра" or "геометрия":
+                send_message(vk_session, 'user_id', event.user_id, message="Калбасина Яна Викторовна")
+            elif response == "физика":
+                send_message(vk_session, 'user_id', event.user_id, message="Малмыгин Михаил Владимирович")
+            elif response == "информатика":
+                send_message(vk_session, 'user_id', event.user_id, message="Полодян Вартан Андреевич")
+            elif response == "история" or 'обществознание':
+                send_message(vk_session, 'user_id', event.user_id, message="Поташовский Александр Павлович")
+            elif response == "география":
+                send_message(vk_session, 'user_id', event.user_id, message="Овчаренко Валерий Романович")
+            elif response == "биология":
+                send_message(vk_session, 'user_id', event.user_id, message="Моисеева Ольга Николаевна")
+            elif response == "химия" or "кубановедение":
+                send_message(vk_session, 'user_id', event.user_id, message="Никуленко Мария Петровна")
+            elif response == "английский язык":
+                send_message(vk_session, 'user_id', event.user_id, message="Новичкова Евгения Владимировна и Геворгян Сусанна Геворговна")
+            elif response == "технология":
+                send_message(vk_session, 'user_id', event.user_id, message="Арещенков Сергей Владимирович и Панина Альбина Николаевна")
+            elif response == "музыка":
+                send_message(vk_session, 'user_id', event.user_id, message="Атаманенко Людмила Помад...Михайловна")
+            elif response == "обж":
+                send_message(vk_session, 'user_id', event.user_id, message="Зазулин Александр Михайлович")
+            elif response == 'физ-ра':
+                send_message(vk_session, 'user_id', event.user_id, message="Квачко Сергей Павлович")
+            elif response == 'назад.':
+                send_message(vk_session, 'user_id', event.user_id, message="Возвращаю тебя в главное меню.", keyboard=keyboard)
+
 
         print('-' * 30)
