@@ -89,8 +89,12 @@ def create_keyboard_for_which_yrok(response):
         keyboard.add_line()
         keyboard.add_button('Назад', color=VkKeyboardColor.NEGATIVE)
 
-        keyboard = keyboard.get_keyboard()
-        return keyboard
+    elif response == 'закрыть':
+        print('закрываем клаву')
+        return keyboard.get_empty_keyboard()
+
+    keyboard = keyboard.get_keyboard()
+    return keyboard
 
 def create_keyboard_for_name_teachers(response):
     keyboard = VkKeyboard(one_time=True)
