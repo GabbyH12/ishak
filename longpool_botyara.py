@@ -11,7 +11,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from datetime import datetime
 import random
 
-token = "7f48a50bbd40562958d11d4728c60f9ad8f7b1ef2eebe842233356bdcdf59cba525f5ce1d0871cb2d2c86"
+token = "55cf82ed684ed26c46b847650666c3806ca044ef51fcd21abdbb3d463e178b8b6a379aab729eac80dab99"
 vk_session = vk_api.VkApi(token=token)
 session_api = vk_session.get_api()
 longpoll = VkLongPoll(vk_session)
@@ -40,7 +40,7 @@ geografy = 'География'
 
 # Создаём главную клавиатуру.
 def create_keyboard(response):
-    keyboard = VkKeyboard(one_time=False)
+    keyboard = VkKeyboard(one_time=True)
     if response == 'привет' or 'новая возможность':
 
         # Создание кнопок
@@ -68,7 +68,7 @@ def create_keyboard(response):
 
 # Создаём клавиатуру для запроса "Какой урок будет первым в...?" из главной клавиатуры
 def create_keyboard_for_which_yrok(response):
-    keyboard = VkKeyboard(one_time=False)
+    keyboard = VkKeyboard(one_time=True)
     if response == 'какой урок будет первым в...?':
 
         # Создание кнопок
@@ -93,7 +93,7 @@ def create_keyboard_for_which_yrok(response):
         return keyboard
 
 def create_keyboard_for_name_teachers(response):
-    keyboard = VkKeyboard(one_time=False)
+    keyboard = VkKeyboard(one_time=True)
     if response == 'фио учителей':
 
         keyboard.add_button('Русский язык', color=VkKeyboardColor.POSITIVE)
