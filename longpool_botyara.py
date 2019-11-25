@@ -40,7 +40,7 @@ geografy = 'География'
 
 # Создаём главную клавиатуру.
 def create_keyboard(response):
-    keyboard = VkKeyboard(one_time=True)
+    keyboard = VkKeyboard(one_time=False)
     
     if response == 'привет' or 'новая возможность':
 
