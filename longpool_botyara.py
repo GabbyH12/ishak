@@ -114,7 +114,6 @@ for event in longpoll.listen():
         response = event.text.lower()
         keyboard = create_keyboard(response)
         second_keyboard = create_keyboard_for_which_yrok(response)
-        third_keyboard = create_keyboard_for_name_teachers(response)
         if event.from_user and not event.from_me:
             
             # Возможности бота
