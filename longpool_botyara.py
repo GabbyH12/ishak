@@ -269,36 +269,4 @@ for event in longpoll.listen():
             elif response == 'назад':
                 send_message(vk_session, 'user_id', event.user_id, message="Возвращаю тебя в главное меню.",keyboard=keyboard)
 
-            elif response == 'фио учителей':
-                send_message(vk_session, 'user_id', event.user_id, message="Выбрав кнопку с названием урока, ты получишь в ответ от меня ФИО преподавателя, ведущего этот урок.",keyboard=third_keyboard)
-            elif response == "русский язык" or "лит-ра":
-                send_message(vk_session, 'user_id', event.user_id, message="Пономарева Анна Олеговна")
-            elif response == "алгебра" or "геометрия":
-                send_message(vk_session, 'user_id', event.user_id, message="Калбасина Яна Викторовна")
-            elif response == "физика":
-                send_message(vk_session, 'user_id', event.user_id, message="Малмыгин Михаил Владимирович")
-            elif response == "информатика":
-                send_message(vk_session, 'user_id', event.user_id, message="Полодян Вартан Андреевич")
-            elif response == "история" or 'обществознание':
-                send_message(vk_session, 'user_id', event.user_id, message="Поташовский Александр Павлович")
-            elif response == "география":
-                send_message(vk_session, 'user_id', event.user_id, message="Овчаренко Валерий Романович")
-            elif response == "биология":
-                send_message(vk_session, 'user_id', event.user_id, message="Моисеева Ольга Николаевна")
-            elif response == "химия" or "кубановедение":
-                send_message(vk_session, 'user_id', event.user_id, message="Никуленко Мария Петровна")
-            elif response == "английский язык":
-                send_message(vk_session, 'user_id', event.user_id, message="Новичкова Евгения Владимировна и Геворгян Сусанна Геворговна")
-            elif response == "технология":
-                send_message(vk_session, 'user_id', event.user_id, message="Арещенков Сергей Владимирович и Панина Альбина Николаевна")
-            elif response == "музыка":
-                send_message(vk_session, 'user_id', event.user_id, message="Атаманенко Людмила Помад...Михайловна")
-            elif response == "обж":
-                send_message(vk_session, 'user_id', event.user_id, message="Зазулин Александр Михайлович")
-            elif response == 'физ-ра':
-                send_message(vk_session, 'user_id', event.user_id, message="Квачко Сергей Павлович")
-            elif response == 'назад.':
-                send_message(vk_session, 'user_id', event.user_id, message="Возвращаю тебя в главное меню.", keyboard=keyboard)
-
-
         print('-' * 30)
