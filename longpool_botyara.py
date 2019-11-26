@@ -101,51 +101,6 @@ def create_keyboard_for_which_yrok(response):
     keyboard = keyboard.get_keyboard()
     return keyboard
 
-def create_keyboard_for_name_teachers(response):
-    keyboard = VkKeyboard(one_time=False)
-    if response == 'фио учителей':
-
-        keyboard.add_button('Русский язык', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Лит-ра', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Физика', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Химия', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Алгебра', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Геометрия', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Музыка', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('ОБЖ', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('География', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Биология', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Кубановедение', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Обществознание', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Химия', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Физ-ра', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('История', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Информатика', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Английский язык', color=VkKeyboardColor.POSITIVE)
-        keyboard.add_button('Технология', color=VkKeyboardColor.POSITIVE)
-
-        keyboard.add_line()
-        keyboard.add_button('Назад', color=VkKeyboardColor.NEGATIVE)
-
-        keyboard = keyboard.get_keyboard()
-        return keyboard
-
 # Отправка сообщений ботом
 def send_message(vk_session, id_type, id, message=None, attachment=None, keyboard=None):
     vk_session.method('messages.send',{id_type: id, 'message': message, 'random_id': random.randint(-2147483648, +2147483648), "attachment": attachment, 'keyboard': keyboard})
