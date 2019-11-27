@@ -118,10 +118,7 @@ for event in longpoll.listen():
             
             # Возможности бота
             if response == "привет":
-                send_message(vk_session, 'user_id', event.user_id, message='Приветик! =)\nМой создатель усложнил себе жизнь и упростил тебе, создав кнопки для работы со мной. Хочешь узнать как это всё работает? Да всё просто: нажимай на нужные тебе появившиеся кнопки .',keyboard=keyboard)
-            
-            elif response == "начнем":
-                send_message(vk_session, 'user_id', event.user_id, message='Я могу переслать тебе домашнее задание(не решения. не умею их отправлять :C), рассказать про текущую погоду и написать будет ли дождь на следующий день после нажатия кнопки :)',keyboard=keyboard)
+                send_message(vk_session, 'user_id', event.user_id, message='Привет!\nНажимай на нужные тебе появившиеся кнопки.',keyboard=keyboard)
             
             elif response == "новая возможность":
                 send_message(vk_session, 'user_id', event.user_id, message='Удачи C:',keyboard=keyboard)
