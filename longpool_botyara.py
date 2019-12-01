@@ -135,9 +135,9 @@ for event in longpoll.listen():
                 temperature = w.get_temperature('celsius')["temp"]
                 temp = round(temperature)
                 if temperature <= 16:
-                    send_message(vk_session, 'user_id', event.user_id, message="В Сочи сейчас " + str(temperature) + ' градусов, ' + detailed_status + ". Одевайтесь теплее, а то можно и отморозить себе чо-нибудь ;)")
+                    send_message(vk_session, 'user_id', event.user_id, message="В Сочи сейчас " + str(temp) + ' градусов, ' + detailed_status + ". Одевайтесь теплее, а то можно и отморозить себе чо-нибудь ;)")
                 else:
-                    send_message(vk_session, 'user_id', event.user_id, message="В Сочи сейчас " + str(temperature) + ' градусов, ' + detailed_status + ".")
+                    send_message(vk_session, 'user_id', event.user_id, message="В Сочи сейчас " + str(temp) + ' градусов, ' + detailed_status + ".")
             
             elif response == 'будет ли завтра дождь?':
                 time_user = '2019-11-28 09:00:00+00'
