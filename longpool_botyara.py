@@ -133,6 +133,7 @@ for event in longpoll.listen():
                 w = observation.get_weather()
                 detailed_status = w.get_detailed_status()
                 temperature = w.get_temperature('celsius')["temp"]
+                temp = round(temperature)
                 if temperature <= 16:
                     send_message(vk_session, 'user_id', event.user_id, message="В Сочи сейчас " + str(temperature) + ' градусов, ' + detailed_status + ". Одевайтесь теплее, а то можно и отморозить себе чо-нибудь ;)")
                 else:
